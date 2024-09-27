@@ -18,7 +18,7 @@ export class C extends WorkerEntrypoint<Env> {
 }
 
 export class B extends WorkerEntrypoint<Env> {
-  async fetch(request: Request): Promise<Response> {
+  async something(request: Request): Promise<Response> {
     // let's get a stream from C
     const stream = await this.env.C.someStream();
     return new Response(stream);
@@ -28,8 +28,7 @@ export class B extends WorkerEntrypoint<Env> {
 export class A extends WorkerEntrypoint<Env> {
   async fetch(request: Request): Promise<Response> {
     // this.env and this.ctx are available here
-    // let's call an rpc endpoint on B
-    return this.env.B.fetch("https://example.com");
+    return this.env.B.something(request);
   }
 }
 
