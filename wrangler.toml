@@ -1,24 +1,19 @@
 name = "manyworkers"
-main = "src/server/index.tsx"
+main = "src/index.ts"
 compatibility_date = "2024-09-09"
 compatibility_flags = ["nodejs_compat_v2"]
 
-legacy_assets = "public"
+  [[services]]
+  binding = "A"
+  service = "manyworkers"
+  entrypoint = "A"
 
-## soon to be replaced with - 
-# experimental_assets = { directory = "public" }
+[[services]]
+binding = "B"
+service = "manyworkers"
+entrypoint = "B"
 
-[build]
-command = "npm run build:css && npm run build:js"
-
-[[durable_objects.bindings]]
-name = "ReactServer"
-class_name = "ReactServer"
-
-[[migrations]]
-tag = "v1" # Should be unique for each entry
-new_classes = ["ReactServer"]
-
-# [[analytics_engine_datasets]]
-# binding = "analytics"
-# dataset = CHANGE_ME
+[[services]]
+binding = "C"
+service = "manyworkers"
+entrypoint = "C"
